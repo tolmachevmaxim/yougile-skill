@@ -10,13 +10,13 @@ Works with **Claude Code**, **Codex**, and **Cursor** as a self-configuring skil
 
 ```bash
 # Claude Code
-git clone https://github.com/mtolmachev/yougile-skill.git ~/.claude/skills/yougile
+git clone https://github.com/tolmachevmaxim/yougile-skill.git ~/.claude/skills/yougile
 
 # Codex
-git clone https://github.com/mtolmachev/yougile-skill.git ~/.agents/skills/yougile
+git clone https://github.com/tolmachevmaxim/yougile-skill.git ~/.agents/skills/yougile
 
 # Cursor
-git clone https://github.com/mtolmachev/yougile-skill.git ~/.cursor/skills/yougile
+git clone https://github.com/tolmachevmaxim/yougile-skill.git ~/.cursor/skills/yougile
 ```
 
 ### 2. Setup
