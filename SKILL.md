@@ -28,4 +28,6 @@ $YG tasks_update '{"id":"ID","completed":true}'
 $YG users_list '{}'
 ```
 
+Descriptions use **HTML** (not Markdown!): `<b>`, `<i>`, `<br>`.
+Use `checklists` for todo-lists inside tasks (not `subtasks` — those create separate board cards).
 Rate limit: 50 req/min. Full docs: README.md

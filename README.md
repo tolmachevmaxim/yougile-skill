@@ -120,7 +120,7 @@ $YG columns_list '{"boardId":"uuid-here"}'
 $YG tasks_list '{"columnId":"uuid-here"}'
 
 # Create a task
-$YG tasks_create '{"title":"Fix bug","columnId":"uuid-here","description":"Details..."}'
+$YG tasks_create '{"title":"Fix bug","columnId":"uuid-here","description":"<b>Details</b>"}'
 
 # Create task with deadline and assignee
 $YG tasks_create '{"title":"Deploy v2","columnId":"uuid","assigned":["user-uuid"],"deadline":{"deadline":1714521600000}}'
@@ -135,16 +135,58 @@ $YG tasks_update '{"id":"task-uuid","columnId":"new-column-uuid"}'
 $YG tasks_list '{"title":"login"}'
 ```
 
+## Formatting & Structure
+
+### Descriptions use HTML (not Markdown!)
+
+Yougile renders task descriptions as rich text. Use HTML:
+
+```json
+{"description": "<b>Bold</b>, <i>italic</i>, <s>strike</s>, <u>underline</u><br><br>Line breaks with &lt;br&gt;"}
+```
+
+Supported tags: `<b>`, `<i>`, `<s>`, `<u>`, `<br>`, `<a href>`, bullet lists via `•` character.
+
+### Checklists (inside a task, NOT on board)
+
+Use `checklists` for grouped todo items. They live inside the task card and don't clutter the board:
+
+```json
+{
+  "checklists": [
+    {
+      "title": "Group Name",
+      "items": [
+        {"title": "Item 1", "isCompleted": false},
+        {"title": "Item 2", "isCompleted": true}
+      ]
+    }
+  ]
+}
+```
+
+Multiple checklist groups per task are supported.
+
+### Subtasks (separate cards on board) — use sparingly
+
+`subtasks` are UUIDs of other tasks. They appear as **separate cards on the board**, which can clutter it. Prefer checklists for todo-lists inside a task.
+
+```json
+{"subtasks": ["uuid-1", "uuid-2"]}
+```
+
+Only use subtasks when items need their own column flow (Backlog → In Progress → Done).
+
 ## Yougile Hierarchy
 
 ```
 Company
-└── Project
+└── Project (access control here — users see only their projects)
     └── Board
         └── Column
             └── Task
-                ├── Subtasks
-                ├── Checklists
+                ├── Checklists (grouped todo items, inside task)
+                ├── Subtasks (separate task cards, linked)
                 ├── Chat messages
                 └── Stickers (labels)
 ```
@@ -156,6 +198,7 @@ Company
 - **Key expiry:** None (permanent until deleted)
 - **Task filtering:** Use `columnId` or `assignedTo` (no `projectId` filter on tasks)
 - **Deadlines:** Unix timestamps in milliseconds
+- **Descriptions:** HTML format (not Markdown)
 - **Docs:** [ru.yougile.com/api-v2](https://ru.yougile.com/api-v2)
 
 ## Credential Lookup Order
