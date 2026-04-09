@@ -418,6 +418,36 @@ def webhooks_update(token, a):
     return api("PUT", f"/webhooks/{wid}", a, token)
 
 
+# ━━ Stickers (tags) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+def stickers_list(token, a):
+    """List string stickers (tags) for a board."""
+    q = _query(a, "includeDeleted", "limit", "offset", "name", "boardId")
+    return api("GET", f"/string-stickers{q}", token=token)
+
+
+def stickers_create(token, a):
+    """Create string sticker (tag). Required: name. Optional: icon, states."""
+    return api("POST", "/string-stickers", a, token)
+
+
+def stickers_get(token, a):
+    """Get sticker by ID."""
+    return api("GET", f"/string-stickers/{a['id']}", token=token)
+
+
+def stickers_update(token, a):
+    """Update sticker."""
+    sid = a.pop("id")
+    return api("PUT", f"/string-stickers/{sid}", a, token)
+
+
+def sticker_states_create(token, a):
+    """Create sticker state. Required: stickerId, name. Optional: color."""
+    sid = a.pop("stickerId")
+    return api("POST", f"/string-stickers/{sid}/states", a, token)
+
+
 # ━━ Helpers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def _query(a, *keys):
@@ -468,6 +498,12 @@ TOOLS = {
     "webhooks_list": webhooks_list,
     "webhooks_create": webhooks_create,
     "webhooks_update": webhooks_update,
+    # Stickers
+    "stickers_list": stickers_list,
+    "stickers_create": stickers_create,
+    "stickers_get": stickers_get,
+    "stickers_update": stickers_update,
+    "sticker_states_create": sticker_states_create,
 }
 
 NO_TOKEN_TOOLS = {"setup", "auth_companies", "auth_create_key", "auth_list_keys"}
