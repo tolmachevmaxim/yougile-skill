@@ -53,14 +53,16 @@ YouGile descriptions are **HTML, not Markdown**. The following rules are confirm
 | Paragraph | `<p>text</p>` |
 | Link | `<a target="_blank" rel="noopener noreferrer" href="URL">text</a>` |
 | Highlight/badge | `<span style="background-color:#B2D995">text</span>` |
-| Checkbox (text) | `☐ item text` (unicode character, inside `<li>`) |
+| Checkbox (unchecked) | `<ul class="todo-list"><li><label class="todo-list__label"><input type="checkbox" disabled="disabled"><span class="todo-list__label__description">text</span></label></li></ul>` |
+| Checkbox (checked) | same with `checked="checked"` on the input |
 
 ### What does NOT work ❌
 
 - `<h1>`, `<h2>`, `<h3>` — use `<h4>` only
 - Markdown syntax (`## Header`, `**bold**`, `- list`) — ignored
 - Plain newlines `\n` — use `<br>` or `<p>` instead
-- Markdown checkboxes `- [ ]` — use `☐` unicode character
+- Markdown checkboxes `- [ ]` — use the todo-list HTML structure below
+- `☐` unicode — renders as plain text, not an interactive checkbox
 
 ### Standard template for a structured ticket
 
@@ -100,9 +102,9 @@ YouGile descriptions are **HTML, not Markdown**. The following rules are confirm
 <p> </p>
 
 <h4><strong>Acceptance Criteria</strong></h4>
-<ul>
-<li>☐ критерий 1</li>
-<li>☐ критерий 2</li>
+<ul class="todo-list">
+<li><label class="todo-list__label"><input type="checkbox" disabled="disabled"><span class="todo-list__label__description">критерий 1</span></label></li>
+<li><label class="todo-list__label"><input type="checkbox" disabled="disabled"><span class="todo-list__label__description">критерий 2</span></label></li>
 </ul>
 <p> </p>
 
