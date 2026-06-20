@@ -1,6 +1,6 @@
 ---
 name: yougile
-description: Yougile project management. Tasks, boards, columns, projects. Use when asked about Yougile tasks, boards, or project tracking.
+description: Yougile project management. Tasks, boards, columns, projects. Use when asked about Yougile tasks, boards, or project tracking — to create a task, update a board, manage columns and projects.
 ---
 
 # Yougile
@@ -28,7 +28,7 @@ $YG tasks_update '{"id":"ID","completed":true}'
 $YG users_list '{}'
 ```
 
-Rate limit: 50 req/min. Full docs: README.md
+Rate limit: 50 req/min. Full docs: references/api.md
 
 ## Task links
 
@@ -66,83 +66,6 @@ YouGile descriptions are **HTML, not Markdown**. The following rules are confirm
 
 ### Standard template for a structured ticket
 
-```html
-<h4><strong>Goal (метрика)</strong></h4>
-<ul>
-<li>Главная: CR X → Y (+Z п.п.)</li>
-<li>Вторичные: ...</li>
-</ul>
-<p>ICE: I=X, C=Y, E=Z → <strong>score</strong></p>
-<p> </p>
-
-<h4><strong>Segment</strong></h4>
-<p>Кого задевает: seg1, seg2</p>
-<ul><li>seg5 — описание;</li></ul>
-<p>Job (JTBD): «...»</p>
-<p> </p>
-
-<h4><strong>Double Diamond</strong></h4>
-<ul>
-<li><strong>Problem hypothesis:</strong> ...</li>
-<li><strong>Solution hypothesis:</strong> Если ..., то ..., потому что ...</li>
-</ul>
-<p> </p>
-
-<h4><strong>Описание проблемы (As Is)</strong></h4>
-<ul><li>...</li></ul>
-<p> </p>
-
-<h4><strong>Что нужно сделать (To Be)</strong></h4>
-<ul>
-<li>Шаг 1</li>
-<li>Шаг 2<ul><li>Подшаг</li></ul></li>
-</ul>
-<p> </p>
-<p><strong>Visual priority:</strong> 1. элемент 2. элемент</p>
-<p> </p>
-
-<h4><strong>Acceptance Criteria</strong></h4>
-<ul class="todo-list">
-<li><label class="todo-list__label"><input type="checkbox" disabled="disabled"><span class="todo-list__label__description">критерий 1</span></label></li>
-<li><label class="todo-list__label"><input type="checkbox" disabled="disabled"><span class="todo-list__label__description">критерий 2</span></label></li>
-</ul>
-<p> </p>
-
-<h4><strong>Analytics Requirements</strong></h4>
-<ul>
-<li>События:<ul>
-<li><i>event_name</i>(param1, param2)</li>
-</ul></li>
-<li>Funnel: шаг1 → шаг2 → шаг3</li>
-<li>Test vs Control: 50/50</li>
-</ul>
-<p> </p>
-
-<h4><strong>References / Behavioral science</strong></h4>
-<ul>
-<li><strong>Principle:</strong> объяснение</li>
-</ul>
-<p> </p>
-
-<h4><strong>Design</strong></h4>
-<ul>
-<li>Design needed: <strong>yes / no</strong></li>
-<li>Figma link: <i>TBD</i></li>
-</ul>
-<p> </p>
-
-<h4><strong>Временное ограничение</strong></h4>
-<ul>
-<li>Спринт: <strong>W17</strong></li>
-<li>Причина: ...</li>
-</ul>
-<p> </p>
-
-<h4><strong>Do not approve before test</strong></h4>
-<ul>
-<li>Test case: <i>TBD</i></li>
-<li>Критерий успеха: ...</li>
-</ul>
-```
+Full HTML template: `references/ticket-template.html` (copy its contents into the `description` field).
 
 Use `checklists` for todo-lists inside tasks (not `subtasks` — those create separate board cards).
